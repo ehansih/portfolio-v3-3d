@@ -1,3 +1,15 @@
+<div align="center">
+
+# 🌐 Portfolio v3 3D
+
+3D animated portfolio — React, Three.js, GSAP. Hosted on Vercel.
+
+![Next.js](https://img.shields.io/badge/Next.js-black?logo=next.js) ![Three.js](https://img.shields.io/badge/Three.js-black?logo=three.js) ![Vercel](https://img.shields.io/badge/Vercel-deployed-black?logo=vercel) ![Last Commit](https://img.shields.io/github/last-commit/ehansih/portfolio-v3-3d)
+
+</div>
+
+---
+
 # Portfolio V3 — moncy.dev Style (3D Character)
 
 Personal portfolio of **Harsh Vardhan Singh Chauhan** built on the MoncyDev Portfolio codebase, customised with Harsh's details and 3D character.
