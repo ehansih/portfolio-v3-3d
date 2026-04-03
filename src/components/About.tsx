@@ -6,9 +6,11 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          I'm Harsh Vardhan Singh Chauhan — a Telecom Security specialist and 5G architect
+          with over 16 years of experience shaping the world's most critical network infrastructure.
+          From VoLTE to 5G core, from cloud-native deployments to AI-driven security strategy,
+          I've worked across three continents with the world's leading operators.
+          Currently driving 5G security portfolio at Nokia, open to advisory, consulting, and speaking opportunities.
         </p>
       </div>
     </div>
