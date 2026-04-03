@@ -48,3 +48,18 @@ vercel --prod
 
 ## Author
 Harsh Vardhan Singh Chauhan — vardhan.chauhan@icloud.com
+
+## Security
+
+This site is hardened with the following HTTP security headers, configured via `vercel.json`:
+
+| Header | Value |
+|--------|-------|
+| `X-Frame-Options` | `SAMEORIGIN` — prevents clickjacking |
+| `X-Content-Type-Options` | `nosniff` — prevents MIME sniffing |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | Camera, mic, geolocation, payment blocked |
+| `X-XSS-Protection` | `1; mode=block` |
+| `Content-Security-Policy` | Restricts script/style/font sources |
+
+HTTPS and HSTS are enforced automatically by Vercel.
