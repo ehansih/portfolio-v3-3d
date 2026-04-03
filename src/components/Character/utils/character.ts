@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { DRACOLoader, GLTF, GLTFLoader } from "three-stdlib";
 import { setCharTimeline, setAllTimeline } from "../../utils/GsapScroll";
-import { decryptFile } from "./decrypt";
 
 const setCharacter = (
   renderer: THREE.WebGLRenderer,
@@ -14,45 +13,39 @@ const setCharacter = (
   loader.setDRACOLoader(dracoLoader);
 
   const loadCharacter = () => {
-    return new Promise<GLTF | null>(async (resolve, reject) => {
-      try {
-        const encryptedBlob = await decryptFile(
-          "/models/character.enc",
-          "Character3D#@"
-        );
-        const blobUrl = URL.createObjectURL(new Blob([encryptedBlob]));
+    return new Promise<GLTF | null>((resolve, reject) => {
+      loader.load(
+        "/models/spartan.glb",
+        async (gltf) => {
+          const character = gltf.scene;
 
-        let character: THREE.Object3D;
-        loader.load(
-          blobUrl,
-          async (gltf) => {
-            character = gltf.scene;
-            await renderer.compileAsync(character, camera, scene);
-            character.traverse((child: any) => {
-              if (child.isMesh) {
-                const mesh = child as THREE.Mesh;
-                child.castShadow = true;
-                child.receiveShadow = true;
-                mesh.frustumCulled = true;
-              }
-            });
-            resolve(gltf);
-            setCharTimeline(character, camera);
-            setAllTimeline();
-            character!.getObjectByName("footR")!.position.y = 3.36;
-            character!.getObjectByName("footL")!.position.y = 3.36;
-            dracoLoader.dispose();
-          },
-          undefined,
-          (error) => {
-            console.error("Error loading GLTF model:", error);
-            reject(error);
-          }
-        );
-      } catch (err) {
-        reject(err);
-        console.error(err);
-      }
+          // Scale and position for Spartan model
+          character.scale.set(1.8, 1.8, 1.8);
+          character.position.set(0, -2.5, 0);
+          character.rotation.y = 0.1;
+
+          await renderer.compileAsync(character, camera, scene);
+
+          character.traverse((child: any) => {
+            if (child.isMesh) {
+              const mesh = child as THREE.Mesh;
+              mesh.castShadow = true;
+              mesh.receiveShadow = true;
+              mesh.frustumCulled = true;
+            }
+          });
+
+          resolve(gltf);
+          setCharTimeline(character, camera);
+          setAllTimeline();
+          dracoLoader.dispose();
+        },
+        undefined,
+        (error) => {
+          console.error("Error loading Spartan model:", error);
+          reject(error);
+        }
+      );
     });
   };
 
